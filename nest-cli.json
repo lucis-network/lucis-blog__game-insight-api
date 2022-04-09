@@ -1,0 +1,54 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/blog/src",
+  "monorepo": true,
+  "root": "apps/blog",
+  "compilerOptions": {
+    "webpack": true,
+    "tsConfigPath": "apps/blog/tsconfig.app.json"
+  },
+  "projects": {
+    "blog": {
+      "type": "application",
+      "root": "apps/blog",
+      "entryFile": "main",
+      "sourceRoot": "apps/blog/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/blog/tsconfig.app.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
+      }
+    },
+    "helper": {
+      "type": "library",
+      "root": "libs/helper",
+      "entryFile": "index",
+      "sourceRoot": "libs/helper/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/helper/tsconfig.lib.json"
+      }
+    },
+    "acl": {
+      "type": "library",
+      "root": "libs/acl",
+      "entryFile": "index",
+      "sourceRoot": "libs/acl/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/acl/tsconfig.lib.json"
+      }
+    }
+  },
+  "assets": [
+    {
+      "include": "**/*.html",
+      "watchAssets": true
+    }
+  ]
+}
