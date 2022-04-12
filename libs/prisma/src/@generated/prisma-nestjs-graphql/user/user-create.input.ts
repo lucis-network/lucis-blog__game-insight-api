@@ -2,8 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { UserRole } from '../prisma/user-role.enum';
 import { UserStatus } from '../prisma/user-status.enum';
-import { UserProfileCreateNestedOneWithoutUserInput } from '../user-profile/user-profile-create-nested-one-without-user.input';
-import { BoxCampaignSubscribesCreateNestedManyWithoutUserInput } from '../box-campaign-subscribes/box-campaign-subscribes-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateInput {
@@ -31,12 +29,6 @@ export class UserCreateInput {
 
     @Field(() => UserStatus, {nullable:true})
     status?: keyof typeof UserStatus;
-
-    @Field(() => UserProfileCreateNestedOneWithoutUserInput, {nullable:true})
-    profile?: UserProfileCreateNestedOneWithoutUserInput;
-
-    @Field(() => BoxCampaignSubscribesCreateNestedManyWithoutUserInput, {nullable:true})
-    enable_notify?: BoxCampaignSubscribesCreateNestedManyWithoutUserInput;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

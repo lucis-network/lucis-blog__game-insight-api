@@ -2,7 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { BoxCampaignUpdateManyWithoutGameInput } from '../box-campaign/box-campaign-update-many-without-game.input';
+import { GameChartUpdateManyWithoutGameInput } from '../game-chart/game-chart-update-many-without-game.input';
+import { GameRankingUpdateOneWithoutGameInput } from '../game-ranking/game-ranking-update-one-without-game.input';
+import { GameInsightUpdateOneWithoutGameInput } from '../game-insight/game-insight-update-one-without-game.input';
+import { GameStatisticsUpdateManyWithoutGameInput } from '../game-statistics/game-statistics-update-many-without-game.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
@@ -50,8 +53,23 @@ export class GameUpdateInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     discord?: NullableStringFieldUpdateOperationsInput;
 
-    @Field(() => BoxCampaignUpdateManyWithoutGameInput, {nullable:true})
-    boxCampaigns?: BoxCampaignUpdateManyWithoutGameInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    road_map?: NullableStringFieldUpdateOperationsInput;
+
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    game_team?: NullableStringFieldUpdateOperationsInput;
+
+    @Field(() => GameChartUpdateManyWithoutGameInput, {nullable:true})
+    game_charts?: GameChartUpdateManyWithoutGameInput;
+
+    @Field(() => GameRankingUpdateOneWithoutGameInput, {nullable:true})
+    game_ranking?: GameRankingUpdateOneWithoutGameInput;
+
+    @Field(() => GameInsightUpdateOneWithoutGameInput, {nullable:true})
+    game_insight?: GameInsightUpdateOneWithoutGameInput;
+
+    @Field(() => GameStatisticsUpdateManyWithoutGameInput, {nullable:true})
+    game_currencies?: GameStatisticsUpdateManyWithoutGameInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;

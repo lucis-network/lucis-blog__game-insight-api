@@ -1,8 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
-import { UserProfileOrderByWithRelationAndSearchRelevanceInput } from '../user-profile/user-profile-order-by-with-relation-and-search-relevance.input';
-import { BoxCampaignSubscribesOrderByRelationAggregateInput } from '../box-campaign-subscribes/box-campaign-subscribes-order-by-relation-aggregate.input';
 import { UserOrderByRelevanceInput } from './user-order-by-relevance.input';
 
 @InputType()
@@ -34,12 +32,6 @@ export class UserOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => SortOrder, {nullable:true})
     status?: keyof typeof SortOrder;
-
-    @Field(() => UserProfileOrderByWithRelationAndSearchRelevanceInput, {nullable:true})
-    profile?: UserProfileOrderByWithRelationAndSearchRelevanceInput;
-
-    @Field(() => BoxCampaignSubscribesOrderByRelationAggregateInput, {nullable:true})
-    enable_notify?: BoxCampaignSubscribesOrderByRelationAggregateInput;
 
     @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;

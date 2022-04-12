@@ -6,5 +6,8 @@ import { Int } from '@nestjs/graphql';
 export class GameCount {
 
     @Field(() => Int, {nullable:false})
-    boxCampaigns!: number;
+    game_charts!: number;
+
+    @Field(() => Int, {nullable:false})
+    game_currencies!: number;
 }

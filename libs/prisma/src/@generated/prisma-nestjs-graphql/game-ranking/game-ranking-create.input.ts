@@ -1,0 +1,38 @@
+import { Field } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
+import { Float } from '@nestjs/graphql';
+import { GameCreateNestedOneWithoutGame_rankingInput } from '../game/game-create-nested-one-without-game-ranking.input';
+
+@InputType()
+export class GameRankingCreateInput {
+
+    @Field(() => Float, {nullable:true})
+    rank?: number;
+
+    @Field(() => Float, {nullable:true})
+    users?: number;
+
+    @Field(() => Float, {nullable:true})
+    change?: number;
+
+    @Field(() => Float, {nullable:true})
+    volume?: number;
+
+    @Field(() => Float, {nullable:true})
+    market_cap?: number;
+
+    @Field(() => Float, {nullable:true})
+    tvl_change?: number;
+
+    @Field(() => Float, {nullable:true})
+    mcap_tvl?: number;
+
+    @Field(() => GameCreateNestedOneWithoutGame_rankingInput, {nullable:true})
+    game?: GameCreateNestedOneWithoutGame_rankingInput;
+
+    @Field(() => Date, {nullable:true})
+    created_at?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updated_at?: Date | string;
+}

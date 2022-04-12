@@ -1,6 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { BoxCampaignCreateNestedManyWithoutGameInput } from '../box-campaign/box-campaign-create-nested-many-without-game.input';
+import { GameChartCreateNestedManyWithoutGameInput } from '../game-chart/game-chart-create-nested-many-without-game.input';
+import { GameRankingCreateNestedOneWithoutGameInput } from '../game-ranking/game-ranking-create-nested-one-without-game.input';
+import { GameInsightCreateNestedOneWithoutGameInput } from '../game-insight/game-insight-create-nested-one-without-game.input';
+import { GameStatisticsCreateNestedManyWithoutGameInput } from '../game-statistics/game-statistics-create-nested-many-without-game.input';
 
 @InputType()
 export class GameCreateInput {
@@ -47,8 +50,23 @@ export class GameCreateInput {
     @Field(() => String, {nullable:true})
     discord?: string;
 
-    @Field(() => BoxCampaignCreateNestedManyWithoutGameInput, {nullable:true})
-    boxCampaigns?: BoxCampaignCreateNestedManyWithoutGameInput;
+    @Field(() => String, {nullable:true})
+    road_map?: string;
+
+    @Field(() => String, {nullable:true})
+    game_team?: string;
+
+    @Field(() => GameChartCreateNestedManyWithoutGameInput, {nullable:true})
+    game_charts?: GameChartCreateNestedManyWithoutGameInput;
+
+    @Field(() => GameRankingCreateNestedOneWithoutGameInput, {nullable:true})
+    game_ranking?: GameRankingCreateNestedOneWithoutGameInput;
+
+    @Field(() => GameInsightCreateNestedOneWithoutGameInput, {nullable:true})
+    game_insight?: GameInsightCreateNestedOneWithoutGameInput;
+
+    @Field(() => GameStatisticsCreateNestedManyWithoutGameInput, {nullable:true})
+    game_currencies?: GameStatisticsCreateNestedManyWithoutGameInput;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

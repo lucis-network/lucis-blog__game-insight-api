@@ -46,6 +46,12 @@ export class GameMaxAggregate {
     @Field(() => String, {nullable:true})
     discord?: string;
 
+    @Field(() => String, {nullable:true})
+    road_map?: string;
+
+    @Field(() => String, {nullable:true})
+    game_team?: string;
+
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 

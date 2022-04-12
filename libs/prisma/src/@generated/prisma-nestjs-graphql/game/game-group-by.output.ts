@@ -49,6 +49,12 @@ export class GameGroupBy {
     @Field(() => String, {nullable:true})
     discord?: string;
 
+    @Field(() => String, {nullable:true})
+    road_map?: string;
+
+    @Field(() => String, {nullable:true})
+    game_team?: string;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date | string;
 

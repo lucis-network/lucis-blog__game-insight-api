@@ -3,9 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { EnumChainSymbolFilter } from '../prisma/enum-chain-symbol-filter.input';
-import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { ChainRelationFilter } from '../chain/chain-relation-filter.input';
-import { BoxPriceListRelationFilter } from '../box-price/box-price-list-relation-filter.input';
+import { GameStatisticsListRelationFilter } from '../game-statistics/game-statistics-list-relation-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class CurrencyWhereInput {
@@ -40,15 +40,15 @@ export class CurrencyWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     owner?: StringNullableFilter;
 
+    @Field(() => ChainRelationFilter, {nullable:true})
+    chain?: ChainRelationFilter;
+
+    @Field(() => GameStatisticsListRelationFilter, {nullable:true})
+    game_statistic?: GameStatisticsListRelationFilter;
+
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     updated_at?: DateTimeFilter;
-
-    @Field(() => ChainRelationFilter, {nullable:true})
-    chain?: ChainRelationFilter;
-
-    @Field(() => BoxPriceListRelationFilter, {nullable:true})
-    boxPrices?: BoxPriceListRelationFilter;
 }

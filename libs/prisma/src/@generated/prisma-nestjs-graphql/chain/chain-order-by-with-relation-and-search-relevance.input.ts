@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { CurrencyOrderByRelationAggregateInput } from '../currency/currency-order-by-relation-aggregate.input';
-import { BoxContractOrderByRelationAggregateInput } from '../box-contract/box-contract-order-by-relation-aggregate.input';
 import { ChainOrderByRelevanceInput } from './chain-order-by-relevance.input';
 
 @InputType()
@@ -34,9 +33,6 @@ export class ChainOrderByWithRelationAndSearchRelevanceInput {
 
     @Field(() => CurrencyOrderByRelationAggregateInput, {nullable:true})
     currencies?: CurrencyOrderByRelationAggregateInput;
-
-    @Field(() => BoxContractOrderByRelationAggregateInput, {nullable:true})
-    nftBox?: BoxContractOrderByRelationAggregateInput;
 
     @Field(() => ChainOrderByRelevanceInput, {nullable:true})
     _relevance?: ChainOrderByRelevanceInput;

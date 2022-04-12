@@ -7,7 +7,4 @@ export class ChainCount {
 
     @Field(() => Int, {nullable:false})
     currencies!: number;
-
-    @Field(() => Int, {nullable:false})
-    nftBox!: number;
 }

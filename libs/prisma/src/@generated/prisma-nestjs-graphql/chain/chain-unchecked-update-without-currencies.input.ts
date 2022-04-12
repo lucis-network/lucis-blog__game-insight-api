@@ -5,7 +5,6 @@ import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-str
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { NullableBoolFieldUpdateOperationsInput } from '../prisma/nullable-bool-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { BoxContractUncheckedUpdateManyWithoutChainInput } from '../box-contract/box-contract-unchecked-update-many-without-chain.input';
 
 @InputType()
 export class ChainUncheckedUpdateWithoutCurrenciesInput {
@@ -33,7 +32,4 @@ export class ChainUncheckedUpdateWithoutCurrenciesInput {
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => BoxContractUncheckedUpdateManyWithoutChainInput, {nullable:true})
-    nftBox?: BoxContractUncheckedUpdateManyWithoutChainInput;
 }

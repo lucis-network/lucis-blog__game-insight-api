@@ -3,7 +3,6 @@ import { ObjectType } from '@nestjs/graphql';
 import { ChainSymbol } from '../prisma/chain-symbol.enum';
 import { Int } from '@nestjs/graphql';
 import { Currency } from '../currency/currency.model';
-import { BoxContract } from '../box-contract/box-contract.model';
 import { ChainCount } from './chain-count.output';
 
 @ObjectType()
@@ -35,9 +34,6 @@ export class Chain {
 
     @Field(() => [Currency], {nullable:true})
     currencies?: Array<Currency>;
-
-    @Field(() => [BoxContract], {nullable:true})
-    nftBox?: Array<BoxContract>;
 
     @Field(() => ChainCount, {nullable:false})
     _count?: ChainCount;
