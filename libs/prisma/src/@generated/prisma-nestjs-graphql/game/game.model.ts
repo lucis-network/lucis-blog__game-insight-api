@@ -1,7 +1,10 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { BoxCampaign } from '../box-campaign/box-campaign.model';
+import { GameChart } from '../game-chart/game-chart.model';
+import { GameRanking } from '../game-ranking/game-ranking.model';
+import { GameInsight } from '../game-insight/game-insight.model';
+import { GameStatistics } from '../game-statistics/game-statistics.model';
 import { GameCount } from './game-count.output';
 
 @ObjectType()
@@ -49,8 +52,23 @@ export class Game {
     @Field(() => String, {nullable:true})
     discord!: string | null;
 
-    @Field(() => [BoxCampaign], {nullable:true})
-    boxCampaigns?: Array<BoxCampaign>;
+    @Field(() => String, {nullable:true})
+    road_map!: string | null;
+
+    @Field(() => String, {nullable:true})
+    game_team!: string | null;
+
+    @Field(() => [GameChart], {nullable:true})
+    game_charts?: Array<GameChart>;
+
+    @Field(() => GameRanking, {nullable:true})
+    game_ranking?: GameRanking | null;
+
+    @Field(() => GameInsight, {nullable:true})
+    game_insight?: GameInsight | null;
+
+    @Field(() => [GameStatistics], {nullable:true})
+    game_statistics?: Array<GameStatistics>;
 
     @Field(() => Date, {nullable:false})
     created_at!: Date;

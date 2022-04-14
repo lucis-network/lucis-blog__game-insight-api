@@ -1,6 +1,9 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { BoxCampaignUncheckedCreateNestedManyWithoutGameInput } from '../box-campaign/box-campaign-unchecked-create-nested-many-without-game.input';
+import { GameChartUncheckedCreateNestedManyWithoutGameInput } from '../game-chart/game-chart-unchecked-create-nested-many-without-game.input';
+import { GameRankingUncheckedCreateNestedOneWithoutGameInput } from '../game-ranking/game-ranking-unchecked-create-nested-one-without-game.input';
+import { GameInsightUncheckedCreateNestedOneWithoutGameInput } from '../game-insight/game-insight-unchecked-create-nested-one-without-game.input';
+import { GameStatisticsUncheckedCreateNestedManyWithoutGameInput } from '../game-statistics/game-statistics-unchecked-create-nested-many-without-game.input';
 
 @InputType()
 export class GameUncheckedCreateInput {
@@ -47,8 +50,23 @@ export class GameUncheckedCreateInput {
     @Field(() => String, {nullable:true})
     discord?: string;
 
-    @Field(() => BoxCampaignUncheckedCreateNestedManyWithoutGameInput, {nullable:true})
-    boxCampaigns?: BoxCampaignUncheckedCreateNestedManyWithoutGameInput;
+    @Field(() => String, {nullable:true})
+    road_map?: string;
+
+    @Field(() => String, {nullable:true})
+    game_team?: string;
+
+    @Field(() => GameChartUncheckedCreateNestedManyWithoutGameInput, {nullable:true})
+    game_charts?: GameChartUncheckedCreateNestedManyWithoutGameInput;
+
+    @Field(() => GameRankingUncheckedCreateNestedOneWithoutGameInput, {nullable:true})
+    game_ranking?: GameRankingUncheckedCreateNestedOneWithoutGameInput;
+
+    @Field(() => GameInsightUncheckedCreateNestedOneWithoutGameInput, {nullable:true})
+    game_insight?: GameInsightUncheckedCreateNestedOneWithoutGameInput;
+
+    @Field(() => GameStatisticsUncheckedCreateNestedManyWithoutGameInput, {nullable:true})
+    game_statistics?: GameStatisticsUncheckedCreateNestedManyWithoutGameInput;
 
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;

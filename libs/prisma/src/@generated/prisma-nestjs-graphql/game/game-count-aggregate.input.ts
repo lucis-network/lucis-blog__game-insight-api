@@ -47,6 +47,12 @@ export class GameCountAggregateInput {
     discord?: true;
 
     @Field(() => Boolean, {nullable:true})
+    road_map?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    game_team?: true;
+
+    @Field(() => Boolean, {nullable:true})
     created_at?: true;
 
     @Field(() => Boolean, {nullable:true})

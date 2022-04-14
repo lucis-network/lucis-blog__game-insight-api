@@ -3,7 +3,7 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { ChainSymbol } from '../prisma/chain-symbol.enum';
 import { Chain } from '../chain/chain.model';
-import { BoxPrice } from '../box-price/box-price.model';
+import { GameStatistics } from '../game-statistics/game-statistics.model';
 import { CurrencyCount } from './currency-count.output';
 
 @ObjectType()
@@ -30,17 +30,17 @@ export class Currency {
     @Field(() => String, {nullable:true})
     owner!: string | null;
 
+    @Field(() => Chain, {nullable:false})
+    chain?: Chain;
+
+    @Field(() => [GameStatistics], {nullable:true})
+    game_statistic?: Array<GameStatistics>;
+
     @Field(() => Date, {nullable:false})
     created_at!: Date;
 
     @Field(() => Date, {nullable:false})
     updated_at!: Date;
-
-    @Field(() => Chain, {nullable:false})
-    chain?: Chain;
-
-    @Field(() => [BoxPrice], {nullable:true})
-    boxPrices?: Array<BoxPrice>;
 
     @Field(() => CurrencyCount, {nullable:false})
     _count?: CurrencyCount;

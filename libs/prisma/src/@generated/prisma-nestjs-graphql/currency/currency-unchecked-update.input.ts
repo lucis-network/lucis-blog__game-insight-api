@@ -3,8 +3,8 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { EnumChainSymbolFieldUpdateOperationsInput } from '../prisma/enum-chain-symbol-field-update-operations.input';
+import { GameStatisticsUncheckedUpdateManyWithoutCurrencyInput } from '../game-statistics/game-statistics-unchecked-update-many-without-currency.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { BoxPriceUncheckedUpdateManyWithoutCurrencyInput } from '../box-price/box-price-unchecked-update-many-without-currency.input';
 
 @InputType()
 export class CurrencyUncheckedUpdateInput {
@@ -30,12 +30,12 @@ export class CurrencyUncheckedUpdateInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     owner?: NullableStringFieldUpdateOperationsInput;
 
+    @Field(() => GameStatisticsUncheckedUpdateManyWithoutCurrencyInput, {nullable:true})
+    game_statistic?: GameStatisticsUncheckedUpdateManyWithoutCurrencyInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => BoxPriceUncheckedUpdateManyWithoutCurrencyInput, {nullable:true})
-    boxPrices?: BoxPriceUncheckedUpdateManyWithoutCurrencyInput;
 }

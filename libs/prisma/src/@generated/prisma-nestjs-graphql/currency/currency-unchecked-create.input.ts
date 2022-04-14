@@ -1,7 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { ChainSymbol } from '../prisma/chain-symbol.enum';
-import { BoxPriceUncheckedCreateNestedManyWithoutCurrencyInput } from '../box-price/box-price-unchecked-create-nested-many-without-currency.input';
+import { GameStatisticsUncheckedCreateNestedManyWithoutCurrencyInput } from '../game-statistics/game-statistics-unchecked-create-nested-many-without-currency.input';
 
 @InputType()
 export class CurrencyUncheckedCreateInput {
@@ -27,12 +27,12 @@ export class CurrencyUncheckedCreateInput {
     @Field(() => String, {nullable:true})
     owner?: string;
 
+    @Field(() => GameStatisticsUncheckedCreateNestedManyWithoutCurrencyInput, {nullable:true})
+    game_statistic?: GameStatisticsUncheckedCreateNestedManyWithoutCurrencyInput;
+
     @Field(() => Date, {nullable:true})
     created_at?: Date | string;
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
-
-    @Field(() => BoxPriceUncheckedCreateNestedManyWithoutCurrencyInput, {nullable:true})
-    boxPrices?: BoxPriceUncheckedCreateNestedManyWithoutCurrencyInput;
 }

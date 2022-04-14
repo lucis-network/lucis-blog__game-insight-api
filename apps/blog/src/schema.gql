@@ -2,19 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserProfile {
-  user_id: ID!
-  full_name: String
-  twitter: String
-  facebook: String
-  telegram: String
-  discord: String
-  phone: String
-  avatar: String
-  cover: String
-  user: User!
+type UserGraphql {
+  id: ID!
+  role: UserRole!
+  email: String
+  code: String!
+  address: String
+  name: String
+  ref_code: String
+  status: UserStatus!
   created_at: DateTime!
   updated_at: DateTime!
+}
+
+enum UserRole {
+  CUSTOMER
+  ADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  BANNED
 }
 
 """
@@ -22,8 +30,105 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type ChainCount {
+  currencies: Int!
+}
+
+type Chain {
+  symbol: ChainSymbol!
+  name: String
+  icon: String
+  chain_id: Int
+  rpc_url: String
+  status: Boolean
+  created_at: DateTime!
+  updated_at: DateTime!
+  currencies: [Currency!]
+  _count: ChainCount!
+}
+
+enum ChainSymbol {
+  ETH
+  BSC
+  POLYGON
+  AVAX
+  FLOW
+  NEAR
+  POLKADOT
+  SOLANA
+}
+
+type GameChart {
+  uid: ID!
+  type: GameChartType!
+  game_uid: String!
+  series: JSON
+  game: Game!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+enum GameChartType {
+  USERS
+  CHANGES
+  VOLUME
+  TVL
+  MCAP
+  MARKETCAP
+  BALANCE
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON
+
+type GameRanking {
+  game_uid: ID!
+  rank: Int
+  users: Decimal
+  change: Decimal
+  volume: Decimal
+  market_cap: Decimal
+  tvl_change: Decimal
+  mcap_tvl: Decimal
+  game: Game
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"""An arbitrary-precision Decimal type"""
+scalar Decimal
+
+type GameInsight {
+  game_uid: ID!
+  team_members: Int
+  event_imfomation: String
+  weigtht: Float
+  deployment_team: String
+  advisor_team: String
+  tech_team: String
+  role: String
+  innovation: String
+  how_to_play: String
+  sword_mechanism: String
+  conbustion_mechanism: String
+  roadmap_detail: String
+  phase_detail: String
+  technology_used: String
+  compare_other_game: String
+  is_invest: String
+  roi_per_account: String
+  point: Int
+  parent: JSON
+  game: Game!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
 type GameCount {
-  boxCampaigns: Int!
+  game_charts: Int!
+  game_statistics: Int!
 }
 
 type Game {
@@ -41,14 +146,44 @@ type Game {
   telegram: String
   youtube: String
   discord: String
-  boxCampaigns: [BoxCampaign!]
+  road_map: String
+  game_team: String
+  game_charts: [GameChart!]
+  game_ranking: GameRanking
+  game_insight: GameInsight
+  game_statistics: [GameStatistics!]
   created_at: DateTime!
   updated_at: DateTime!
   _count: GameCount!
 }
 
+type GameStatistics {
+  id: ID!
+  game_uid: String!
+  currency_uid: String!
+  is_use: Boolean!
+  token_price: Float
+  highest_price: Float
+  highest_yield: Float
+  one_day_up: Float
+  one_day_trading_volum: Float
+  maket_cap: Decimal
+  fully_diluted_market_cap: Decimal
+  circulation_supply: Decimal
+  total_supply: Decimal
+  maximum_sypply: Decimal
+  price_fluctuating: JSON
+  ido: Decimal
+  no_tokens: Int
+  ido_time: DateTime
+  game: Game!
+  currency: Currency!
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
 type CurrencyCount {
-  boxPrices: Int!
+  game_statistic: Int!
 }
 
 type Currency {
@@ -59,264 +194,34 @@ type Currency {
   chain_symbol: ChainSymbol!
   address: String!
   owner: String
+  chain: Chain!
+  game_statistic: [GameStatistics!]
   created_at: DateTime!
   updated_at: DateTime!
-  chain: Chain!
-  boxPrices: [BoxPrice!]
   _count: CurrencyCount!
 }
 
-enum ChainSymbol {
-  ETH
-  BSC
-  POLYGON
-  AVAX
-  FLOW
-  NEAR
-  POLKADOT
-  SOLANA
-}
-
-type ChainCount {
-  currencies: Int!
-  nftBox: Int!
-}
-
-type Chain {
-  symbol: ChainSymbol!
+type GUpComingGame {
+  uid: ID!
   name: String
+  logo: String
+  game_statistics: [GameStatistics!]
+  created_at: DateTime!
+  updated_at: DateTime!
+  _count: GameCount!
+  currencies: [GCurrencies!]
+}
+
+type GCurrencies {
+  symbol: String!
   icon: String
-  chain_id: Int
-  rpc_url: String
-  status: Boolean
-  created_at: DateTime!
-  updated_at: DateTime!
-  currencies: [Currency!]
-  nftBox: [BoxContract!]
-  _count: ChainCount!
-}
-
-type BoxContractCount {
-  boxPrices: Int!
-}
-
-type BoxContract {
-  uid: ID!
-  address: String!
-  owner: String
   chain_symbol: ChainSymbol!
-  currency_symbol: String
-  admin_address: String
-  admin_prv_key: String
-  is_transfered: Boolean!
   created_at: DateTime!
   updated_at: DateTime!
-  chain: Chain!
-  boxPrices: [BoxPrice!]
-  _count: BoxContractCount!
-}
-
-type BoxPrice {
-  uid: ID!
-  box_type_uid: String!
-  currency_uid: String!
-  price: Decimal
-  contract_address: String
-  created_at: DateTime!
-  updated_at: DateTime!
-  contract: BoxContract
-  boxType: BoxType!
-  currency: Currency!
-}
-
-"""An arbitrary-precision Decimal type"""
-scalar Decimal
-
-type BoxTypeCount {
-  prices: Int!
-}
-
-type BoxType {
-  uid: ID!
-  box_campaign_uid: String!
-  name: String
-  desc: String
-  total_amount: Int!
-  sold_amount: Int!
-  thumb_img: String
-  series_content: String
-  limit_per_user: Int
-  prices: [BoxPrice!]
-  campaign: BoxCampaign!
-  created_at: DateTime!
-  updated_at: DateTime!
-  _count: BoxTypeCount!
-}
-
-type BoxCampaignWhitelist {
-  id: ID!
-  box_campaign_uid: String!
-  user_id: Int!
-  campaign: BoxCampaign!
-  created_at: DateTime!
-  updated_at: DateTime!
-}
-
-type BoxCampaignBuyHistory {
-  id: ID!
-  user_id: Int!
-  box_campaign_uid: String!
-  round: JSON
-  quantity: Int
-  box_price_uid: String!
-  box_type_uid: String!
-  tx_hash: String
-  status: BoxCampaignBuyHistoriesStatus!
-  box_price: JSON
-  data: String
-  created_at: DateTime!
-  updated_at: DateTime!
-  box: BoxCampaign!
-}
-
-"""
-The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
-"""
-scalar JSON
-
-enum BoxCampaignBuyHistoriesStatus {
-  PENDING
-  PROCESSING
-  CONFIRMING
-  SUCCEED
-  FAILED
-}
-
-type BoxCampaignCount {
-  subscribeCampaign: Int!
-  boxTypes: Int!
-  whitelists: Int!
-  buyHistory: Int!
-}
-
-type BoxCampaign {
-  uid: ID!
-  game_uid: String!
-  name: String
-  desc: String
-  rules: String
-  cover_img: String
-  banner_img: String
-  rounds: JSON
-  status: BoxCampaignsStatus
-  publish_status: PublishStatus
-  opening_at: DateTime!
-  start: DateTime!
-  end: DateTime!
-  highlight: String
-  spotlight_position: Int
-  game: Game!
-  subscribeCampaign: [BoxCampaignSubscribes!]
-  boxTypes: [BoxType!]
-  whitelists: [BoxCampaignWhitelist!]
-  buyHistory: [BoxCampaignBuyHistory!]
-  created_at: DateTime!
-  updated_at: DateTime!
-  _count: BoxCampaignCount!
-}
-
-enum BoxCampaignsStatus {
-  UPCOMING
-  OPENING
-  CLOSED
-}
-
-enum PublishStatus {
-  PUBLISH
-  DRAFT
-  PENDING
-  HIDDEN
-}
-
-type BoxCampaignSubscribes {
-  id: ID!
-  user_id: Int!
-  box_campaign_uid: String!
-  round: JSON
-  finish: Boolean!
-  enable_notify: Boolean!
-  user: User!
-  box_campaign: BoxCampaign!
-  created_at: DateTime!
-  updated_at: DateTime!
-}
-
-type UserCount {
-  enable_notify: Int!
-}
-
-type User {
-  id: ID!
-  role: UserRole!
-  email: String
-  code: String!
-  address: String!
-  name: String
-  password: String
-  ref_code: String
-  status: UserStatus!
-  profile: UserProfile
-  enable_notify: [BoxCampaignSubscribes!]
-  created_at: DateTime!
-  updated_at: DateTime!
-  _count: UserCount!
-}
-
-enum UserRole {
-  CUSTOMER
-  ADMIN
-}
-
-enum UserStatus {
-  ACTIVE
-  BANNED
-}
-
-type UserGraphql {
-  id: ID!
-  role: UserRole!
-  email: String
-  code: String!
-  address: String!
-  name: String
-  ref_code: String
-  status: UserStatus!
-  profile: UserProfile
-  enable_notify: [BoxCampaignSubscribes!]
-  created_at: DateTime!
-  updated_at: DateTime!
-  _count: UserCount!
+  _count: CurrencyCount!
 }
 
 type Query {
   me: UserGraphql
-}
-
-type Mutation {
-  updateProfile(data: ProfileUpdateInput!): UserProfile
-}
-
-input ProfileUpdateInput {
-  full_name: NullableStringFieldUpdateOperationsInput
-  twitter: NullableStringFieldUpdateOperationsInput
-  facebook: NullableStringFieldUpdateOperationsInput
-  telegram: NullableStringFieldUpdateOperationsInput
-  discord: NullableStringFieldUpdateOperationsInput
-  phone: NullableStringFieldUpdateOperationsInput
-  avatar: NullableStringFieldUpdateOperationsInput
-  cover: NullableStringFieldUpdateOperationsInput
-}
-
-input NullableStringFieldUpdateOperationsInput {
-  set: String
+  getUpComingGame: [GUpComingGame!]
 }

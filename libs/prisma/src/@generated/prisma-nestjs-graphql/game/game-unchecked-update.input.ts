@@ -2,7 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { BoxCampaignUncheckedUpdateManyWithoutGameInput } from '../box-campaign/box-campaign-unchecked-update-many-without-game.input';
+import { GameChartUncheckedUpdateManyWithoutGameInput } from '../game-chart/game-chart-unchecked-update-many-without-game.input';
+import { GameRankingUncheckedUpdateOneWithoutGameInput } from '../game-ranking/game-ranking-unchecked-update-one-without-game.input';
+import { GameInsightUncheckedUpdateOneWithoutGameInput } from '../game-insight/game-insight-unchecked-update-one-without-game.input';
+import { GameStatisticsUncheckedUpdateManyWithoutGameInput } from '../game-statistics/game-statistics-unchecked-update-many-without-game.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
@@ -50,8 +53,23 @@ export class GameUncheckedUpdateInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     discord?: NullableStringFieldUpdateOperationsInput;
 
-    @Field(() => BoxCampaignUncheckedUpdateManyWithoutGameInput, {nullable:true})
-    boxCampaigns?: BoxCampaignUncheckedUpdateManyWithoutGameInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    road_map?: NullableStringFieldUpdateOperationsInput;
+
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    game_team?: NullableStringFieldUpdateOperationsInput;
+
+    @Field(() => GameChartUncheckedUpdateManyWithoutGameInput, {nullable:true})
+    game_charts?: GameChartUncheckedUpdateManyWithoutGameInput;
+
+    @Field(() => GameRankingUncheckedUpdateOneWithoutGameInput, {nullable:true})
+    game_ranking?: GameRankingUncheckedUpdateOneWithoutGameInput;
+
+    @Field(() => GameInsightUncheckedUpdateOneWithoutGameInput, {nullable:true})
+    game_insight?: GameInsightUncheckedUpdateOneWithoutGameInput;
+
+    @Field(() => GameStatisticsUncheckedUpdateManyWithoutGameInput, {nullable:true})
+    game_statistics?: GameStatisticsUncheckedUpdateManyWithoutGameInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;

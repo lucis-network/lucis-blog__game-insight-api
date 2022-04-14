@@ -2,7 +2,10 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
-import { BoxCampaignListRelationFilter } from '../box-campaign/box-campaign-list-relation-filter.input';
+import { GameChartListRelationFilter } from '../game-chart/game-chart-list-relation-filter.input';
+import { GameRankingRelationFilter } from '../game-ranking/game-ranking-relation-filter.input';
+import { GameInsightRelationFilter } from '../game-insight/game-insight-relation-filter.input';
+import { GameStatisticsListRelationFilter } from '../game-statistics/game-statistics-list-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -59,8 +62,23 @@ export class GameWhereInput {
     @Field(() => StringNullableFilter, {nullable:true})
     discord?: StringNullableFilter;
 
-    @Field(() => BoxCampaignListRelationFilter, {nullable:true})
-    boxCampaigns?: BoxCampaignListRelationFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    road_map?: StringNullableFilter;
+
+    @Field(() => StringNullableFilter, {nullable:true})
+    game_team?: StringNullableFilter;
+
+    @Field(() => GameChartListRelationFilter, {nullable:true})
+    game_charts?: GameChartListRelationFilter;
+
+    @Field(() => GameRankingRelationFilter, {nullable:true})
+    game_ranking?: GameRankingRelationFilter;
+
+    @Field(() => GameInsightRelationFilter, {nullable:true})
+    game_insight?: GameInsightRelationFilter;
+
+    @Field(() => GameStatisticsListRelationFilter, {nullable:true})
+    game_statistics?: GameStatisticsListRelationFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;

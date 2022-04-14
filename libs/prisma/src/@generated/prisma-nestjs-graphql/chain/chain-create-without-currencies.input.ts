@@ -2,7 +2,6 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { ChainSymbol } from '../prisma/chain-symbol.enum';
 import { Int } from '@nestjs/graphql';
-import { BoxContractCreateNestedManyWithoutChainInput } from '../box-contract/box-contract-create-nested-many-without-chain.input';
 
 @InputType()
 export class ChainCreateWithoutCurrenciesInput {
@@ -30,7 +29,4 @@ export class ChainCreateWithoutCurrenciesInput {
 
     @Field(() => Date, {nullable:true})
     updated_at?: Date | string;
-
-    @Field(() => BoxContractCreateNestedManyWithoutChainInput, {nullable:true})
-    nftBox?: BoxContractCreateNestedManyWithoutChainInput;
 }

@@ -6,7 +6,6 @@ import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { BoolNullableFilter } from '../prisma/bool-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { CurrencyListRelationFilter } from '../currency/currency-list-relation-filter.input';
-import { BoxContractListRelationFilter } from '../box-contract/box-contract-list-relation-filter.input';
 
 @InputType()
 export class ChainWhereInput {
@@ -46,7 +45,4 @@ export class ChainWhereInput {
 
     @Field(() => CurrencyListRelationFilter, {nullable:true})
     currencies?: CurrencyListRelationFilter;
-
-    @Field(() => BoxContractListRelationFilter, {nullable:true})
-    nftBox?: BoxContractListRelationFilter;
 }

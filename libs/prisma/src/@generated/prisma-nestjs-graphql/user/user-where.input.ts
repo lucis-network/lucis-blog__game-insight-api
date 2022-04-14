@@ -5,8 +5,6 @@ import { EnumUserRoleFilter } from '../prisma/enum-user-role-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { EnumUserStatusFilter } from '../prisma/enum-user-status-filter.input';
-import { UserProfileRelationFilter } from '../user-profile/user-profile-relation-filter.input';
-import { BoxCampaignSubscribesListRelationFilter } from '../box-campaign-subscribes/box-campaign-subscribes-list-relation-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
@@ -33,8 +31,8 @@ export class UserWhereInput {
     @Field(() => StringFilter, {nullable:true})
     code?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    address?: StringFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    address?: StringNullableFilter;
 
     @Field(() => StringNullableFilter, {nullable:true})
     name?: StringNullableFilter;
@@ -47,12 +45,6 @@ export class UserWhereInput {
 
     @Field(() => EnumUserStatusFilter, {nullable:true})
     status?: EnumUserStatusFilter;
-
-    @Field(() => UserProfileRelationFilter, {nullable:true})
-    profile?: UserProfileRelationFilter;
-
-    @Field(() => BoxCampaignSubscribesListRelationFilter, {nullable:true})
-    enable_notify?: BoxCampaignSubscribesListRelationFilter;
 
     @Field(() => DateTimeFilter, {nullable:true})
     created_at?: DateTimeFilter;

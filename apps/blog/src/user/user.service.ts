@@ -1,6 +1,7 @@
 import { PrismaService } from '@lib/prisma';
+import { UserWhereInput } from '@lib/prisma/@generated/prisma-nestjs-graphql/user/user-where.input';
 import { Injectable, Logger } from '@nestjs/common';
-import { ProfileUpdateInput } from './user.type';
+import { Prisma } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -8,7 +9,9 @@ export class UserService {
 
   constructor(private prisma: PrismaService) {}
 
-  async updateProfile(userId: number, data: ProfileUpdateInput) {
-    return {};
+  async user(where: Prisma.UserWhereInput) {
+    const userInfo = await this.prisma.user.findFirst({
+      where: where,
+    });
   }
 }

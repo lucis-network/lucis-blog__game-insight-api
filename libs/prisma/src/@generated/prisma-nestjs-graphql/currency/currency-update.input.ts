@@ -2,9 +2,9 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { ChainUpdateOneRequiredWithoutCurrenciesInput } from '../chain/chain-update-one-required-without-currencies.input';
-import { BoxPriceUpdateManyWithoutCurrencyInput } from '../box-price/box-price-update-many-without-currency.input';
+import { GameStatisticsUpdateManyWithoutCurrencyInput } from '../game-statistics/game-statistics-update-many-without-currency.input';
+import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
 export class CurrencyUpdateInput {
@@ -27,15 +27,15 @@ export class CurrencyUpdateInput {
     @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
     owner?: NullableStringFieldUpdateOperationsInput;
 
+    @Field(() => ChainUpdateOneRequiredWithoutCurrenciesInput, {nullable:true})
+    chain?: ChainUpdateOneRequiredWithoutCurrenciesInput;
+
+    @Field(() => GameStatisticsUpdateManyWithoutCurrencyInput, {nullable:true})
+    game_statistic?: GameStatisticsUpdateManyWithoutCurrencyInput;
+
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     created_at?: DateTimeFieldUpdateOperationsInput;
 
     @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
     updated_at?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => ChainUpdateOneRequiredWithoutCurrenciesInput, {nullable:true})
-    chain?: ChainUpdateOneRequiredWithoutCurrenciesInput;
-
-    @Field(() => BoxPriceUpdateManyWithoutCurrencyInput, {nullable:true})
-    boxPrices?: BoxPriceUpdateManyWithoutCurrencyInput;
 }

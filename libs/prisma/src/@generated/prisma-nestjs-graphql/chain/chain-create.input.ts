@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { ChainSymbol } from '../prisma/chain-symbol.enum';
 import { Int } from '@nestjs/graphql';
 import { CurrencyCreateNestedManyWithoutChainInput } from '../currency/currency-create-nested-many-without-chain.input';
-import { BoxContractCreateNestedManyWithoutChainInput } from '../box-contract/box-contract-create-nested-many-without-chain.input';
 
 @InputType()
 export class ChainCreateInput {
@@ -34,7 +33,4 @@ export class ChainCreateInput {
 
     @Field(() => CurrencyCreateNestedManyWithoutChainInput, {nullable:true})
     currencies?: CurrencyCreateNestedManyWithoutChainInput;
-
-    @Field(() => BoxContractCreateNestedManyWithoutChainInput, {nullable:true})
-    nftBox?: BoxContractCreateNestedManyWithoutChainInput;
 }

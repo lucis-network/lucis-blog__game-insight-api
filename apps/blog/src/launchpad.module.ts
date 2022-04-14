@@ -9,6 +9,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { UserModule } from './user/user.module';
 import { RedisModule } from './redis/redis.module';
 import { PrismaModule } from '@lib/prisma';
+import { GameModule } from './game/game.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { PrismaModule } from '@lib/prisma';
     PrismaModule,
     UserModule,
     RedisModule,
+    GameModule,
     // TaskModule,
   ],
   controllers: [LaunchpadController],

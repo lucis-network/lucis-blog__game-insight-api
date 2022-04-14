@@ -15,6 +15,8 @@ export enum GameScalarFieldEnum {
     telegram = "telegram",
     youtube = "youtube",
     discord = "discord",
+    road_map = "road_map",
+    game_team = "game_team",
     created_at = "created_at",
     updated_at = "updated_at"
 }

@@ -14,7 +14,9 @@ export enum GameOrderByRelevanceFieldEnum {
     twitter = "twitter",
     telegram = "telegram",
     youtube = "youtube",
-    discord = "discord"
+    discord = "discord",
+    road_map = "road_map",
+    game_team = "game_team"
 }
 
 

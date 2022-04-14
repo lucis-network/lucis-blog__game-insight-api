@@ -51,6 +51,12 @@ export class GameOrderByWithAggregationInput {
     discord?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})
+    road_map?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
+    game_team?: keyof typeof SortOrder;
+
+    @Field(() => SortOrder, {nullable:true})
     created_at?: keyof typeof SortOrder;
 
     @Field(() => SortOrder, {nullable:true})

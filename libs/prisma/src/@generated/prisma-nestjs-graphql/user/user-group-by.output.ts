@@ -24,8 +24,8 @@ export class UserGroupBy {
     @Field(() => String, {nullable:false})
     code!: string;
 
-    @Field(() => String, {nullable:false})
-    address!: string;
+    @Field(() => String, {nullable:true})
+    address?: string;
 
     @Field(() => String, {nullable:true})
     name?: string;

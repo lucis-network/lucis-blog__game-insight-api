@@ -48,6 +48,12 @@ export class GameCountAggregate {
     discord!: number;
 
     @Field(() => Int, {nullable:false})
+    road_map!: number;
+
+    @Field(() => Int, {nullable:false})
+    game_team!: number;
+
+    @Field(() => Int, {nullable:false})
     created_at!: number;
 
     @Field(() => Int, {nullable:false})
